@@ -21,7 +21,7 @@ function ProxyOn() {
     export SOCKS_PROXY="proxy.noc.titech.ac.jp:3128"
 }
 
-function ProxyOff() {
+function KillProxy() {
     gsettings reset-recursively org.gnome.system.proxy
     unset HTTP_PROXY
     unset http_proxy
