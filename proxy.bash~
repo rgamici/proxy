@@ -36,9 +36,8 @@ function KillProxy() {
 }
 
 function RestartCloud() {
-	killall dropbox
+	dropbox stop
 	dropbox start
 	killall megasync
 	megasync &
-	git config --global http.proxy $http.proxy
 }
