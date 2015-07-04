@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
 
 function ProxyOn() {
+	local PROXY="proxy.noc.titech.ac.jp"
+	local PORT=3128
     gsettings set org.gnome.system.proxy mode 'manual'
-    gsettings set org.gnome.system.proxy.http host 'proxy.noc.titech.ac.jp'
-    gsettings set org.gnome.system.proxy.http port 3128
-    gsettings set org.gnome.system.proxy.https host 'proxy.noc.titech.ac.jp'
-    gsettings set org.gnome.system.proxy.https port 3128
-    gsettings set org.gnome.system.proxy.ftp host 'proxy.noc.titech.ac.jp'
-    gsettings set org.gnome.system.proxy.ftp port 3128
-    gsettings set org.gnome.system.proxy.socks host 'proxy.noc.titech.ac.jp'
-    gsettings set org.gnome.system.proxy.socks port 3128
-    gsettings set org.gnome.system.proxy ignore-hosts "['localhost', '127.0.0.0/8', 'wlanauth.noc.titech.ac.jp']"
-    export http_proxy='proxy.noc.titech.ac.jp:3128'
-    export https_proxy="proxy.noc.titech.ac.jp:3128"
-    export ftp_proxy="proxy.noc.titech.ac.jp:3128"
-    export socks_proxy="proxy.noc.titech.ac.jp:3128"
-    export HTTP_PROXY='proxy.noc.titech.ac.jp:3128'
-    export HTTPS_PROXY="proxy.noc.titech.ac.jp:3128"
-    export FTP_PROXY="proxy.noc.titech.ac.jp:3128"
-    export SOCKS_PROXY="proxy.noc.titech.ac.jp:3128"
+    gsettings set org.gnome.system.proxy.http host $PROXY
+    gsettings set org.gnome.system.proxy.http port $PORT
+    gsettings set org.gnome.system.proxy.https host $PROXY
+    gsettings set org.gnome.system.proxy.https port $PORT
+    gsettings set org.gnome.system.proxy.ftp host $PROXY
+    gsettings set org.gnome.system.proxy.ftp port $PORT
+    gsettings set org.gnome.system.proxy.socks host $PROXY
+    gsettings set org.gnome.system.proxy.socks port $PORT
+    gsettings set org.gnome.system.proxy ignore-hosts '["localhost", "127.0.0.0/8", "wlanauth.noc.titech.ac.jp"]'
+    export http_proxy=$PROXY:$PORT
+    export https_proxy=$PROXY:$PORT
+    export ftp_proxy=$PROXY:$PORT
+    export socks_proxy=$PROXY:$PORT
+    export HTTP_PROXY=$PROXY:$PORT
+    export HTTPS_PROXY=$PROXY:$PORT
+    export FTP_PROXY=$PROXY:$PORT
+    export SOCKS_PROXY=$PROXY:$PORT
 	RestartCloud
 }
 
