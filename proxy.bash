@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+# Functions to change proxy automatically to use browser and cloud storage
 
-function ProxyOn() {
-	local PROXY="proxy.noc.titech.ac.jp"
-	local PORT=3128
+function ProxyOn() { 
+	local PROXY="proxy.noc.titech.ac.jp"		# proxy host
+	local PORT=3128					# proxy port
 	gsettings set org.gnome.system.proxy mode 'manual'
 	gsettings set org.gnome.system.proxy.http host $PROXY
 	gsettings set org.gnome.system.proxy.http port $PORT
@@ -37,10 +38,11 @@ function KillProxy() {
 	RestartCloud
 }
 
-function RestartCloud() {
+function RestartCloud() {	
+# dropbox and megasync only change the proxy setting on startup
 	killall dropbox
 	dropbox start
 	killall megasync
 	megasync &
-	git config --global http.proxy $http.proxy
+	git config --global http.proxy $http.proxy	# not sure if it works
 }
